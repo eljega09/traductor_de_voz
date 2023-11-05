@@ -129,6 +129,8 @@ def synthesize_speech():
     return jsonify({'speech_url': '/static/translated_speech.mp3'})
 
 
-port = int(os.environ.get('PORT', 8080))
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=port, debug=os.environ.get('DEBUG', False))
+if __name__ == "__main__":
+    if not os.path.exists('temp'):
+        os.makedirs('temp')
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host="0.0.0.0", port=port)
