@@ -1,6 +1,9 @@
 Flask-Cors==4.0.0
 SpeechRecognition==3.10.0
 ffmpeg==1.4
+http_client==0.1.22
+pycopy-urllib.parse==0.5.2
+Flask-Cors==4.0.0
 gTTS==2.4.0
 libretranslatepy==2.1.3
 subprocess32==3.5.4
