@@ -12,7 +12,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 import urllib.parse
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 CORS(app)
 
 # Iniciar el objeto reconocedor de voz
@@ -129,11 +129,11 @@ def synthesize_speech():
     return jsonify({'speech_url': '/static/translated_speech.mp3'})
 
 
-if __name__ == "__main__":
-    if not os.path.exists('temp'):
+port = int(os.environ.get('PORT', 8080))
+if __name__ == '__main__':
+        if not os.path.exists('temp'):
         os.makedirs('temp')
-    port = int(os.environ.get("PORT", 8080))
-    app.run(host="0.0.0.0", port=port)
+    app.run(host='0.0.0.0', port=port, debug=os.environ.get('DEBUG', False))
 
 """
 if __name__ == '__main__':
