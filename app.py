@@ -128,7 +128,7 @@ def synthesize_speech():
     tts.save("static/translated_speech.mp3")  
     return jsonify({'speech_url': '/static/translated_speech.mp3'})
 
-"""
+
 if __name__ == "__main__":
     if not os.path.exists('temp'):
         os.makedirs('temp')
@@ -142,3 +142,4 @@ if __name__ == '__main__':
         os.makedirs('temp')
 
     app.run(debug=True)
+"""
