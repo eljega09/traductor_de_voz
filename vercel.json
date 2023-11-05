@@ -1,0 +1,13 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "app.py",
+        "use": "@vercel/python"
+      }
+    ],
+    "env": {
+      "FLASK_ENV": "production",
+      "X_RapidAPI_Key": "@x_rapidapi_key"
+    }
+  }

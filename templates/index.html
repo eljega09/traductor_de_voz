@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Traductor de Voz</title>
+    <link rel="stylesheet" href="/static/styles/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Traductor de Voz</h1>
+        <button id="start-record-btn" onclick="startRecording()">Comenzar a Grabar</button>
+        <button id="stop-record-btn" onclick="stopRecording()" disabled>Detener Grabación</button>
+        <p id="transcription">Transcripción: </p>
+        <p id="translation">Traducción: </p>
+        <audio id="audio-playback" controls></audio>
+    </div>
+    <script src="/static/scripts/app.js"></script>
+</body>
+</html>
