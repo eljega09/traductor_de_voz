@@ -1,23 +1,29 @@
-# Utiliza una imagen base oficial de Python como punto de partida
-FROM python:3.8-slim
+# Usar una imagen base de Python 3.9
+FROM python:3.9-slim
 
-# Configura el entorno para que los mensajes de log y salida sean enviados directamente a la terminal sin ser bufferizados
-ENV PYTHONUNBUFFERED True
-
-# Instala dependencias del sistema para `ffmpeg`
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends ffmpeg \
-    && rm -rf /var/lib/apt/lists/*
-
-# Establece el directorio de trabajo para tu aplicación
+# Establecer el directorio de trabajo en /app
 WORKDIR /app
 
-# Copia el archivo de requisitos y lo instala usando pip
-COPY requirements.txt .
+# Instalar ffmpeg para el procesamiento de audio
+RUN apt-get update && \
+    apt-get install -y ffmpeg && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Copiar el archivo de requisitos primero para aprovechar la caché de capas de Docker
+COPY requirements.txt /app/
+
+# Instalar las dependencias del proyecto
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copia el resto de tu código fuente de la aplicación al directorio de trabajo
-COPY . .
+# Copiar el resto de los archivos del proyecto en el directorio de trabajo
+COPY . /app
 
-# Indica el comando para iniciar tu aplicación
+# Exponer el puerto en el que la aplicación se ejecutará
+EXPOSE 8080
+
+# Configurar las variables de entorno necesarias
+ENV PORT=8080
+
+# Comando para ejecutar la aplicación
 CMD ["python", "app.py"]
