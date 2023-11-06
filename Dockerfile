@@ -10,7 +10,11 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+# Copiar el archivo de requisitos primero para aprovechar la caché de capas de Docker
+COPY requirements.txt /app/
 
+# Instalar las dependencias del proyecto
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copiar el resto de los archivos del proyecto en el directorio de trabajo
 COPY . /app
