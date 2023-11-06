@@ -1,6 +1,5 @@
 Flask-Cors==4.0.0
 SpeechRecognition==3.10.0
-ffmpeg==1.4
 http_client==0.1.22
 Flask-Cors==4.0.0
 gTTS==2.4.0
