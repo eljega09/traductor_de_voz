@@ -94,7 +94,7 @@ def translate_text():
     headers = {
     'content-type': "application/x-www-form-urlencoded",
     'Accept-Encoding': "application/gzip",
-    #'X-RapidAPI-Key': os.environ.get("X_RapidAPI_Key"),
+    'X-RapidAPI-Key': os.environ.get("X_RapidAPI_Key"),
     'X-RapidAPI-Host': "google-translate1.p.rapidapi.com"
 }
 
