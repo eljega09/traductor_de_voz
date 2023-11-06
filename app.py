@@ -118,15 +118,21 @@ def translate_text():
 
 @app.route('/synthesize_speech', methods=['POST'])
 def synthesize_speech():
-    
     data = request.json
     text = data.get('text') 
     if not text:
         return jsonify({'error': 'No text provided'}), 400
+
+    # Generar un nombre de archivo único para el archivo de audio
+    unique_filename = str(uuid.uuid4())
+    audio_path = f"static/{unique_filename}.mp3"
+
     # Convertir texto a audio
     tts = gTTS(text=text, lang='en')
-    tts.save("static/translated_speech.mp3")  
-    return jsonify({'speech_url': '/static/translated_speech.mp3'})
+    tts.save(audio_path)
+
+    # Retornar la URL única del archivo de audio
+    return jsonify({'speech_url': f'/{audio_path}'})
 
 
 if __name__ == "__main__":
